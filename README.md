@@ -1,2 +1,2 @@
 # yoSelect
-Selectbox
+A very simple `select` solution `div` based.

@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  <title>yoSelect</title>
+</head>
+<body>
+
+<div class="container-fluid">
+  <h3>yoSelect</h3>
+
+  <div id="sel"></div>
+
+  <br>
+
+  <div class="btn-group">
+    <button class="btn btn-primary" onclick="changeData()">Change data</button>
+    <button class="btn btn-primary" onclick="isInvalid()">isInvalid</button>
+  </div>
+  <p></p>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <label>Select</label>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" id="select" placeholder="ID or value" aria-label="Change data" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" onclick="selectData()">Select</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <label>Change border radius</label>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" id="radius" placeholder="Value in pixels" aria-label="Change border" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" onclick="changeRadius()">Change</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <label>Change border color</label>
+      <div class="input-group mb-3">
+        <input type="color" class="form-control" id="borderColor" style="height: 38px">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" onclick="changeBorderColor()">Change</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <label>Change background color</label>
+      <div class="input-group mb-3">
+        <input type="color" class="form-control" id="bgColor" style="height: 38px">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" onclick="changeBgColor()">Change</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<script src="dist/js.min.js"></script>
+<script>
+  var yo, invalid = false;
+
+  function isInvalid() {
+    if (invalid) {
+      yo.isValid();
+      invalid = false;
+    }
+    else {
+      yo.isInvalid();
+      invalid = true;
+    }
+
+  }
+
+  function changeBgColor() {
+    yo.setBgColor($('#bgColor').val());
+  }
+
+  function changeBorderColor() {
+    yo.setBorderColor($('#borderColor').val());
+  }
+
+  function changeRadius() {
+    yo.setRadius($('#radius').val());
+  }
+
+  function selectData() {
+    yo.select($('#select').val());
+  }
+
+  function changeData() {
+    var data2 = [
+      {id: 9, value: "val 9"},
+      {id: 10, value: "val 10"},
+      {id: 11, value: "val 11"},
+      {id: 12, value: "val 12"},
+      {id: 13, value: "val 13"},
+      {id: 14, value: "val 14", selected: true},
+      {id: 15, value: "val 15"},
+      {id: 16, value: "val 16"},
+    ];
+
+    yo.updateData(data2);
+  }
+
+
+  $(document).ready(function () {
+    var data = [
+      {id: 1, value: "val 1"},
+      {id: 2, value: "val 2", selected: true},
+      {id: 3, value: "val 3"},
+      {id: 4, value: "val 4"},
+      {id: 5, value: "val 5"},
+      {id: 6, value: "val 6"},
+      {id: 7, value: "val 7"},
+      {id: 8, value: "val 8"},
+    ];
+
+    yo = new YoSelect('#sel', data);
+    console.log(data);
+  });
+</script>
+</body>
+</html>
